@@ -1,0 +1,46 @@
+
+
+
+body{
+margin-top:5px;
+margin-left:20px;
+}
+
+
+.stepcarousel{
+position: relative; /*leave this value alone*/
+border: 0px solid #333333;
+margin-left:25px;
+
+overflow: scroll; /*leave this value alone*/
+width: 865px; /*Width of Carousel Viewer itself*/
+height: 95px; /*Height should enough to fit largest content's height*/
+}
+
+.stepcarousel .belt{
+position: absolute; /*leave this value alone*/
+left: 0;
+top: 0;
+
+}
+
+.stepcarousel .panel{
+float: left; /*leave this value alone*/
+overflow: hidden; /*clip content that go outside dimensions of holding panel DIV*/
+
+/*margin around each panel*/
+/*width: 80px; Width of each panel holding each content. If removed, widths should be individually defined on each content DIV then. */
+}
+
+.borderit img{
+	padding:0px;
+}
+
+.borderit:hover img{
+padding-top:3px;
+}
+
+.borderit:hover{
+color: red; /* irrelevant definition to overcome IE bug */
+}
+
