@@ -1284,6 +1284,7 @@ iframe.iframe{
     width: 100%;
     float: left;
     position: relative;
+    padding-top: 0.4em;
 }
 
 .search-bottom {

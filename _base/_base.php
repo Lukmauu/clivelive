@@ -392,6 +392,14 @@ require $_part_path . '_includes/header-not-index.php';
         var geodesic = new google.maps.Polyline( geodesicOptions );
         geodesic.setMap( map );
    
+        var homeControlDiv = document.createElement( 'div' );
+        var center_ = map.getCenter();
+        var zoom_ = map.zoom;
+        var homeControl = new HomeControl( homeControlDiv, map, center_, zoom_ );
+
+        homeControlDiv.index = 1;
+        map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push( homeControlDiv );
+        
     
     
         infowindow.open( map, marker );
@@ -435,6 +443,14 @@ require $_part_path . '_includes/header-not-index.php';
             animation:google.maps.Animation.BOUNCE
         });
 
+//        var homeControlDiv = document.createElement( 'div' );
+//        var center_ = map.getCenter();
+//        var zoom_ = map.zoom;
+//        var homeControl = new HomeControl( homeControlDiv, map, center_, zoom_ );
+//
+//        homeControlDiv.index = 1;
+//        map.controls[ google.maps.ControlPosition.TOP_RIGHT ].push( homeControlDiv );
+//            
         //marker.setMap(map);
         Route( lat_, lng_, latGet, lngGet, directionsService, directionsDisplay );
 

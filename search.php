@@ -15,7 +15,7 @@ function isLocal () {
         return true;
     }
     return false;
-}
+} 
 
 require '_includes/clivelive-conn.php';
 require '_includes/authentication.php';
@@ -84,7 +84,7 @@ function getResultsRandom () {
     $q = "SELECT * FROM search ORDER BY RAND()";
     //$q = "SELECT * FROM search ORDER BY full_address";
     $q_prep = queryMysql( $q );
-    
+     
     while ( $row = mysql_fetch_assoc( $q_prep ) ) {
         
         array_push( $array , $row );
@@ -283,22 +283,29 @@ if( $get['noValue'] === "false" ){
         if ( $get['noValue'] === "true" ) {
             
             $_ARRAY_RESULTS = getResultsRandom();
+       
         }
     } else if ( $get['sortBy'] === "rel" ) {
         
         $_ARRAY_RESULTS = getResultsRandom();
+     
     } else {
         
         $_ARRAY_RESULTS = getResultsRandom();
+        
     }
 }
 
 
 $_DUPLICATE = array();
 
+$darkvader = fetchAssoc("SELECT * FROM search WHERE user_name='darkvader'");
+
+
 foreach ($_ARRAY_RESULTS as $key => $value) {
     
-    if (!empty($_DUPLICATE) && in_array($value["wa_id"], $_DUPLICATE)){
+    if ( !empty($_DUPLICATE) && in_array($value["wa_id"], $_DUPLICATE) || $value['user_name'] === 'darkvader' ) {
+        
         unset($_ARRAY_RESULTS[$key]);
         continue;
     }
@@ -310,6 +317,13 @@ foreach ($_ARRAY_RESULTS as $key => $value) {
         $_ARRAY_RESULTS[$key]["distance"] = $track ? haversineDistance($latUser, $lngUser, $_ARRAY_RESULTS[$key]["lat"], $_ARRAY_RESULTS[$key]["lng"]) : false; 
     }
 }
+
+
+if ( ( $get['noValue'] !== 'true' || $get['sortBy'] === 'geo' ) && strlen( $get['lat'] ) > 5 ) {
+        
+    $darkvader["distance"] = $track ? haversineDistance( $latUser, $lngUser, $darkvader["lat"], $darkvader["lng"]) : false; 
+}
+
 
 if ( strlen( $get['lat']) > 3 ) {
     
@@ -324,6 +338,7 @@ if ( strlen( $get['lat']) > 3 ) {
         } else {
             
             usort( $_ARRAY_RESULTS, 'cmp' );
+            shuffle( $_ARRAY_RESULTS );
         }
         
     } 
@@ -335,18 +350,23 @@ if ( strlen( $get['lat']) > 3 ) {
 //echoPre($_ARRAY_RESULTS);
 
 $location = array();
+
+array_unshift( $_ARRAY_RESULTS, $darkvader );
+
+
 foreach ( $_ARRAY_RESULTS as $key => $value ) {
     
     $_ARRAY_RESULTS[$key] = desanitizePost( $value );
 }
 
 foreach ( $_ARRAY_RESULTS as $value ) {
+    
     if ( !is_numeric( $value ) ) {
         
-if ( isset($value['distance'] ) && $track ) {
+        if ( isset($value['distance'] ) && $track ) {
     
-    $value['distance'] = ( $value['distance'] > 0 ) ? $value['distance'] . ' miles' : 'Very close'; 
-}
+            $value['distance'] = ( $value['distance'] > 0 ) ? $value['distance'] . ' miles' : 'Very close'; 
+        }
 
 $businessName = $value['business_name'];
 
@@ -361,14 +381,16 @@ $return .= '<div class="search-second-content">';
 
 $return .= '</div>';    
 
-    $return .= '<div class="search-first-content">';
+    $return .= '<div class="search-first-content" style="position: relative;">';
     
     if ( $track ) {
         
-        $return .= '<a class="search-img-wrapper" href="'.$value['page_url'].'?lat='.$latUser.'&lng='.$lngUser.'">';
+        $return .= '<a style="overflow: hidden; content: ""; height: 100%;"
+            class="search-img-wrapper " href="'.$value['page_url'].'?lat='.$latUser.'&lng='.$lngUser.'">';
     } else {
         
-        $return .= '<a class="search-img-wrapper" href="'.$value['page_url'].'?lat=&lng=">';
+        $return .= '<a style="overflow: hidden; content: ""; height: 100%;"
+            class="search-img-wrapper" href="'.$value['page_url'].'?lat=&lng=">';
     }
     
     
@@ -376,6 +398,8 @@ $return .= '</div>';
         $return .= '<img src="'.$get['path'].'_images/rsz_1overlay.png" class="search-img" style="position: absolute;" />';
     $return .= '</a>';
 
+    
+    $return .= '<div style="float: left; width: 65%;">';
     
         $return .= '<h2 class="wordFix">'.$businessName.'</h2>';
         
@@ -385,7 +409,8 @@ $return .= '</div>';
         $return .= '<p class="wordFix">'.$value['real_content'].'</p>';
         //$return .= '<div class="search-clearfix"></div>';
         
-        $return .= ( itSet( $value['tags'] ) ) ? '<p>'.$value['tags'].'</p>' : '';
+        $return .= ( itSet( $value['tags'] ) ) ? '<p style="margin-top: 0.4em; border-bottom: solid 0.5em #ccc; display: inline-block;">The Bill-Board Especials</p><p style="clear: both;">'.$value['tags'].'</p>' : '';
+        $return .= '</div>';
     $return .= '</div>';
     
     
