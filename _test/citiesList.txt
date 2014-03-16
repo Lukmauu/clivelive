@@ -1,0 +1,212 @@
+Othello	
+Ritzville	
+Asotin
+Clarkston
+Benton City
+Kennewick
+Prosser	Benton
+Richland
+West Richland
+Cashmere
+Chelan
+Entiat
+Leavenworth
+Wenatchee
+Forks
+Port Angeles
+Sequim
+Battle Ground
+Camas
+La Center
+Ridgefield
+Vancouver
+Washougal
+Dayton	
+Castle Rock
+Kalama
+Kelso
+Longview
+Woodland
+Bridgeport
+East Wenatchee
+Rock Island
+Republic
+Connell
+Kahlotus
+Mesa
+Pasco
+Pomeroy
+Electric
+Ephrata
+George
+Grand Coulee
+Mattawa
+Moses Lake
+Quincy
+Royal City
+Soap Lake
+Warden
+Aberdeen
+Cosmopolis
+Elma
+Hoquiam
+McCleary
+Montesano
+Oakville
+Ocean Shores
+Westport
+Langley
+Oak Harbor
+Port Townsend
+Algona
+Bellevue
+Black Diamond
+Burien
+Carnation
+Clyde Hill
+Covington
+Des Moines
+Duvall
+Federal Way
+Issaquah
+Kenmore
+Kent
+Kirkland
+Lake Forest Park
+Maple Valley
+Medina	King
+Mercer Island
+Newcastle
+Normandy Park
+North Bend
+Redmond
+Renton
+Sammamish
+SeaTac
+Seattle
+Shoreline
+Snoqualmie
+Tukwila
+Woodinville
+Auburn
+Enumclaw
+Pacific
+Bothell
+Bainbridge Island
+Bremerton
+Port Orchard
+Poulsbo
+Cle Elum
+Ellensburg
+Kittitas
+Roslyn
+Bingen
+Goldendale
+White Salmon
+Centralia
+Chehalis
+Morton
+Mossyrock
+Napavine
+Toledo
+Vader
+Winlock
+Davenport
+Harrington
+Sprague
+Shelton
+Brewster
+Okanogan
+Omak
+Oroville
+Pateros
+Tonasket
+Ilwaco
+Long Beach
+Raymond
+South Bend
+Newport
+Bonney Lake
+Buckley
+DuPont
+Edgewood
+Fife
+Fircrest
+Gig Harbor
+Lakewood
+Orting
+Puyallup
+Roy
+Ruston
+Sumner
+Tacoma
+University Place
+Milton
+Anacortes
+Burlington
+Mount Vernon
+Sedro-Woolley
+North Bonneville
+Stevenson
+Arlington
+Brier
+Edmonds
+Everett
+Gold Bar
+Granite Falls
+Lake Stevens
+Lynnwood
+Marysville
+Mill Creek
+Monroe
+Mountlake Terrace
+Mukilteo
+Snohomish
+Stanwood
+Sultan
+Woodway
+Airway Heights
+Cheney
+Deer Park
+Liberty Lake
+Medical Lake
+Millwood
+Spangle
+Spokane
+Spokane Valley
+Chewelah
+Colville
+Kettle Falls
+Lacey
+Olympia
+Rainier
+Tenino
+Tumwater
+Yelm
+College Place
+Prescott
+Waitsburg
+Walla Walla
+Bellingham
+Blaine
+Everson
+Ferndale
+Lynden
+Nooksack
+Sumas
+Colfax
+Palouse
+Pullman
+Tekoa
+Grandview
+Granger
+Mabton
+Moxee
+Selah
+Sunnyside
+Tieton
+Toppenish
+Union Gap
+Wapato
+Yakima
+Zillah

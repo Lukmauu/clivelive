@@ -409,7 +409,7 @@ $return .= '</div>';
         $return .= '<p class="wordFix">'.$value['real_content'].'</p>';
         //$return .= '<div class="search-clearfix"></div>';
         
-        $return .= ( itSet( $value['tags'] ) ) ? '<p style="margin-top: 0.4em; border-bottom: solid 0.5em #ccc; display: inline-block;">The Bill-Board Especials</p><p style="clear: both;">'.$value['tags'].'</p>' : '';
+        $return .= ( itSet( $value['tags'] ) ) ? '<p style="margin-top: 0.4em; border-bottom: solid 0.5em #ccc; display: inline-block;">Clivelive deals</p><p style="clear: both;">'.$value['tags'].'</p>' : '';
         $return .= '</div>';
     $return .= '</div>';
     

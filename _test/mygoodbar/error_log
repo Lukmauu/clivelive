@@ -1,0 +1,6 @@
+[09-Jan-2014 19:47:11] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home7/cliveliv/public_html/_includes/func.php on line 462
+[09-Jan-2014 19:47:11] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: A link to the server could not be established in /home7/cliveliv/public_html/_includes/func.php on line 462
+[09-Jan-2014 19:49:20] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home7/cliveliv/public_html/_includes/func.php on line 462
+[09-Jan-2014 19:49:20] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: A link to the server could not be established in /home7/cliveliv/public_html/_includes/func.php on line 462
+[09-Jan-2014 19:49:54] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: Access denied for user 'root'@'localhost' (using password: NO) in /home7/cliveliv/public_html/_includes/func.php on line 462
+[09-Jan-2014 19:49:54] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: A link to the server could not be established in /home7/cliveliv/public_html/_includes/func.php on line 462
