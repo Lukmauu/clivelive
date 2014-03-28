@@ -106,8 +106,14 @@ require $_part_path . '_includes/header-not-index.php';
         
   <?php if ( $_FETCHED_ROW['user_name'] === 'darkvader' ) { ?>          
     <script type='text/javascript' src='http://www.serverroom.net/jwplayer6/jwplayer.js'></script>
-    <div id='player_preview' style='float:left;'> 
-      <video id='video_tag' width='560'height='400' controls autoplay> 
+    <div id='player_preview' 
+                class="min-height-box img-responsive"
+                
+                style="width: 100%; height: auto; float: left;"> 
+      <video 
+            id='video_tag'
+            style="position: relative; width: 100%; height:100%;"
+            controls autoplay> 
         <source src='http://clivelive1.srfms.com:2173/rtplive/camera.stream/playlist.m3u8' type='video/mp4'> 
         Your browser does not support the video tag. This text will be replaced. Streaming solutions by <a href='http://www.serverroom.net'>Server Room - Shoutcast hosting, Flash Streaming</a> 
       </video> 
@@ -125,8 +131,8 @@ require $_part_path . '_includes/header-not-index.php';
          {file:'http://clivelive1.srfms.com:2173/rtplive/camera.stream/playlist.m3u8'} 
         ] 
        }], 
-       height: 400, 
-       width: 560, 
+       height: 'auto', 
+       width: '100%', 
        primary: 'flash', 
        fallback: false, 
        repeat: true, 

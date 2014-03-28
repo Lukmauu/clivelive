@@ -102,8 +102,7 @@ $get = sanitizePost( $_GET );
 
 $latUser = $get['lat'];
 $lngUser = $get['lng'];
-
-$_TRACK = $get['track'] === 'false' ? false : true;
+$track = $get['track'] === 'false' ? false : true;
 $_NOVALUE = $get['track'] === 'false' ? false : true;
 $_GEO = $get['sortBy'] === "geo" ? $get['sortBy'] : false;
 
@@ -241,7 +240,7 @@ $darkvader = fetchAssoc( "SELECT * FROM search WHERE user_name='darkvader'" );
 
 if ( $_GEO ) {
         
-    $darkvader["distance"] = $_TRACK ? haversineDistance( $latUser, $lngUser, $darkvader["lat"], $darkvader["lng"]) : false; 
+    $darkvader["distance"] = $track ? haversineDistance( $latUser, $lngUser, $darkvader["lat"], $darkvader["lng"]) : false; 
 }
 
 foreach ( $_ARRAY_RESULTS as $key => $value ) {
@@ -262,7 +261,7 @@ foreach ( $_ARRAY_RESULTS as $key => $value ) {
     // add distance 
     if ( $_GEO ) {
         
-        $_ARRAY_RESULTS[$key]["distance"] = $_TRACK ? haversineDistance($latUser, $lngUser, $_ARRAY_RESULTS[$key]["lat"], $_ARRAY_RESULTS[$key]["lng"]) : false; 
+        $_ARRAY_RESULTS[$key]["distance"] = $track ? haversineDistance($latUser, $lngUser, $_ARRAY_RESULTS[$key]["lat"], $_ARRAY_RESULTS[$key]["lng"]) : false; 
     }
 }
 
@@ -301,14 +300,85 @@ foreach ( $_ARRAY_RESULTS as $key => $value ) {
 
 foreach ( $_ARRAY_RESULTS as $value ) {
     
-    $businessName = $value['business_name'];
+    
+    if ( !is_numeric( $value ) ) {
+        
+        if ( isset($value['distance'] ) && $track ) {
+    
+            $value['distance'] = ( $value['distance'] > 0 ) ? $value['distance'] . ' miles' : 'Very close'; 
+        }
 
-    array_push( $location, array(
-        "businessName" => $businessName,
-        "address" => $value['full_address'],
-        "lat" => $value['lat'], 
-        "lng" => $value['lng']
-    ));
+        $businessName = $value['business_name'];
+
+            $return .= '<div class="divPre row">';
+    
+                    $return .= '<div class="row searchMargin">';
+
+                        $return .= '<div class="search-second-content">';
+
+            $return .= '<img class="search-miles-img" src="http://www.google.com/mapfiles/marker' . ( ( isset( $_RAND_ ) ) ? '' : $m[$i] )  . '.png">';
+            $return .= isDistance() && $track ? '<h4 class="search-miles wordFix">' . $value['distance'] . '</h4>' : '';
+
+            $return .= '</div>';    
+
+                $return .= '<div class="search-first-content" style="position: relative;">';
+    
+            if ( $track ) {
+        
+                $return .= '<a style="overflow: hidden; content: ""; height: 100%;"
+                    class="search-img-wrapper " href="'.$value['page_url'].'?lat='.$latUser.'&lng='.$lngUser.'">';
+            } else {
+        
+                $return .= '<a style="overflow: hidden; content: ""; height: 100%;"
+                    class="search-img-wrapper" href="'.$value['page_url'].'?lat=&lng=">';
+            }
+    
+    
+            $return .= '<img src="'.$get['path'].'_images/video_thumb_homepage_01.png" class="search-img" style="float: left;" />';
+            $return .= '<img src="'.$get['path'].'_images/rsz_1overlay.png" class="search-img" style="position: absolute;" />';
+        $return .= '</a>';
+
+    
+    $return .= '<div style="float: left; width: 65%;">';
+    
+        $return .= '<h2 class="wordFix">'.$businessName.'</h2>';
+        
+        $return .= '<p class="wordFix">'.$value['full_address'].'</p>';
+        $return .= '<p class="wordFix">'.$value['phone'].'</p>';
+        
+        $return .= '<p class="wordFix">'.$value['real_content'].'</p>';
+        //$return .= '<div class="search-clearfix"></div>';
+        
+        $return .= ( itSet( $value['tags'] ) ) ? '<p style="margin-top: 0.4em; border-bottom: solid 0.5em #ccc; display: inline-block;">Clivelive deals</p><p style="clear: both;">'.$value['tags'].'</p>' : '';
+        $return .= '</div>';
+    $return .= '</div>';
+    
+    
+
+
+$return .= '<div class="clearfix"></div>';
+$return .= '<div class="row search-bottom"><div>';
+$return .= '<div class="col-xs-4"><a href="tel:'.$value['phone'].'">Call</a></div>';                    
+$return .= '<div class="col-xs-4" style="text-align: center;">';
+
+$return .= isDistance() ? '<a href="adr:'. urlencode( $value['full_address'] ) .'">Directions</a>' : '';
+
+$return .= '</div>';        
+$return .= '<div class="col-xs-4" style="text-align: right;"><a href='.$value['page_url'].'>Website</a></div>';
+$return .= '</div></div>';
+
+$return .= '</div></div>';
+
+
+
+array_push($location, array(
+    "businessName" => $businessName,
+    "address" => $value['full_address'],
+    "lat" => $value['lat'], 
+    "lng" => $value['lng']
+));
+$i++;
+    }
 }
 
 //echoPre($_SERVER);
@@ -317,9 +387,9 @@ $time = $time_end - $_SERVER['REQUEST_TIME'];;
 
     
 // $return
-$_RETURN = array("get" => $get, "result" => $_ARRAY_RESULTS, "time" => $time, "locationArray" => $location);
+$_RETURN = array("get" => $get, "result" => $return, "time" => $time, "locationArray" => $location);
 //$searchNoReturn 
-if ( count( $_RETURN['result'] ) > 10 ) {
+if ( strlen( $_RETURN['result'] ) > 10 ) {
     
     $_RETURN["searchNoReturn"] = false;
     echo json_encode( $_RETURN );

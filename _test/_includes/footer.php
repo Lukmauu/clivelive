@@ -218,13 +218,13 @@ function getMeCities() {
     
     
     
-    ( function ( window, undefined ) {
-
-        History.Adapter.bind( window, 'statechange', function () {
-            
-        } );
-
-    })( window );
+//    ( function ( window, undefined ) {
+//
+//        History.Adapter.bind( window, 'statechange', function () {
+//            
+//        } );
+//
+//    })( window );
     
     function deserializeGoogleFullAddress ( array_ ) {
         
@@ -485,7 +485,6 @@ function getMeCities() {
         
             $.each( searchButtonArray, function ( key_, value_ ) {
         
-        
                 $( value_ ).show();
             } );
         }
@@ -493,7 +492,6 @@ function getMeCities() {
         function hideAllSearchButton () {
         
             $.each( searchButtonArray, function ( key_, value_ ) {
-        
         
                 $( value_ ).hide();
             } );
@@ -689,7 +687,7 @@ function getMeCities() {
         
             function objLength ( obj ) {
             
-                if ( !jQuery.isPlainObject( obj )  && typeof obj === 'boolean' ) { 
+                if ( !jQuery.isPlainObject( obj ) && typeof obj === 'boolean' ) { 
                 
                     return false;
                 }
@@ -730,8 +728,8 @@ function getMeCities() {
     
                     _KILL_SEARCH_ = false;
                     error_msg_no_result
-                    .text( 'Please revise your search entry,' + '\n' 
-                        + 'it timeout, we are sorry' )
+                        .text( 'Please revise your search entry,' + '\n' 
+                            + 'it timeout, we are sorry' )
                     
                     $.flip( 'normal' );
                     if ( _msg_ ) {
@@ -743,9 +741,7 @@ function getMeCities() {
                                 
                             error_msg_no_result.html( _msg_ ).slideDown( 'slow' );
                         }
-                            
                     }
-
                 },
             
                 setKillSearch : function ( _setter_ ) {
@@ -876,7 +872,7 @@ function getMeCities() {
     
         // no geo message
         msg_no_geo
-        .text( 'Your geolocation is diseabled, please input city for better search results.' );
+            .text( 'Your geolocation is diseabled, please input city for better search results.' );
     
         var geo_ = function () {
         
@@ -887,7 +883,6 @@ function getMeCities() {
             
                 haveCoords = true;
                 init.setLocation( true );
-                //checkbox.attr( 'checked', 'checked' );
                 coordsLat = position.coords.latitude;
                 coordsLng = position.coords.longitude;
                 //checkbox_label.css( { 'display' : 'block' } );
@@ -900,7 +895,7 @@ function getMeCities() {
                 haveCoords = false;
                 coordsLat = false;
                 coordsLng = false;
-                checkbox_label.css( { 'display' : 'none' } );
+                //checkbox_label.css( { 'display' : 'none' } );
                 msg_no_geo.css( { 'display' : 'block' } );
             }
             if(navigator.geolocation || typeof haveCoords === "undefined"){
@@ -1209,7 +1204,7 @@ function getMeCities() {
                 error_msg.hide();
                 search_div.hide();
                 
-                //search_div.html( $result );
+                search_div.html( $result );
                 
                 not_search_div.slideUp( function () {
                     search_div
@@ -1660,8 +1655,6 @@ function getMeCities() {
 
         window.onload = function () {
     
-            //starting.Chide();
-            
             function afterLoad () {
 
                 if ( $.isUndefined( init.isSearchUrl() ) ) {
@@ -1674,25 +1667,19 @@ function getMeCities() {
             
                     if ( init.getSearchUrl().track ) {
                 
-                        init.setLocation( true );
+                        // init.setLocation( true );
                     } else {
                 
-                        init.setLocation( false );
+                        // init.setLocation( false );
                     }
-                        
+                    
+                    // Do the search with url params
                     finalSearch( init.getSearchUrl() );
                 } else {
                     
-                    //starting.Chide( function () { 
-                        
-                      //   not_search_div.show();
-                    //} );
-                      not_search_div.show();
-                             
-                    
+                    not_search_div.show();
                 } 
             }
-    
             afterLoad();
         }
 
